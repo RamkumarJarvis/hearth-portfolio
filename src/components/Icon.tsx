@@ -11,12 +11,20 @@ const PATHS: Record<string, string> = {
 };
 
 interface IconProps {
-  name: keyof typeof PATHS;
+  name: keyof typeof PATHS | "stop";
   size?: number;
   class?: string;
 }
 
 export default function Icon({ name, size = 20, class: className }: IconProps) {
+  if (name === "stop") {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" class={className}>
+        <rect x="6" y="6" width="12" height="12" rx="2" />
+      </svg>
+    );
+  }
+
   const d = PATHS[name];
   if (!d) return null;
   return (

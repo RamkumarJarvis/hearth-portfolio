@@ -4,7 +4,7 @@ import { buildSystemPrompt, resolveProjectCards } from "../../lib/systemPrompt";
 
 export const prerender = false;
 
-const MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free";
+const MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
 
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.OPENROUTER_API_KEY;

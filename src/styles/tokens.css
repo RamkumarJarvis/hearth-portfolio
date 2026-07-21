@@ -1,27 +1,45 @@
+/* Hallmark · macrostructure: Marquee Hero · genre: editorial
+ * theme: custom (vibe: "warm editorial, calm AI portfolio" · paper oklch(97% 0.012 55)
+ * · accent oklch(62% 0.14 38) terracotta · Source Serif 4 + IBM Plex Sans + IBM Plex Mono)
+ * diversification: first Hallmark run for this project
+ */
 :root {
-  /* Color */
-  --surface-page: #FAF9F5;
-  --surface-panel: #F0EEE6;
-  --surface-card: #FFFFFF;
-  --ink: #2B2A26;
-  --ink-muted: #6B6A63;
-  --ink-faint: #9C9A91;
+  /* Color — warm-oat anchor, hue ~50-55 */
+  --color-paper: oklch(97% 0.012 55);
+  --color-paper-2: oklch(94% 0.014 55);
+  --color-card: oklch(99% 0.006 55);
+  --color-rule: oklch(88% 0.012 55);
+  --color-rule-strong: oklch(80% 0.014 55);
+  --color-ink: oklch(21% 0.012 50);
+  --color-ink-muted: oklch(44% 0.012 50);
+  --color-ink-faint: oklch(62% 0.010 50);
 
-  --accent: #CC785C;
-  --accent-hover: #B86449;
-  --accent-tint: #F3E3DB;
+  --color-accent: oklch(62% 0.14 38);
+  --color-accent-hover: oklch(54% 0.15 38);
+  --color-accent-tint: oklch(93% 0.03 40);
+  --color-focus: oklch(60% 0.16 38);
 
-  --border-hairline: #E5E3DA;
-  --border-strong: #D3D0C4;
+  --shadow-popover: 0 8px 24px oklch(21% 0.012 50 / 0.12);
 
-  --shadow-popover: 0 8px 24px rgba(43, 42, 38, 0.12);
+  /* Back-compat aliases used across components.css / global.css */
+  --surface-page: var(--color-paper);
+  --surface-panel: var(--color-paper-2);
+  --surface-card: var(--color-card);
+  --ink: var(--color-ink);
+  --ink-muted: var(--color-ink-muted);
+  --ink-faint: var(--color-ink-faint);
+  --accent: var(--color-accent);
+  --accent-hover: var(--color-accent-hover);
+  --accent-tint: var(--color-accent-tint);
+  --border-hairline: var(--color-rule);
+  --border-strong: var(--color-rule-strong);
 
-  /* Typography */
-  --font-serif: "Source Serif 4", Georgia, serif;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Typography — 2+1: Source Serif 4 (display) + IBM Plex Sans (body) + IBM Plex Mono (outlier) */
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Spacing scale */
+  /* Spacing scale (4pt) */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -38,56 +56,20 @@
   --radius-pill: 999px;
 
   /* Motion */
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-fast: 120ms;
-  --duration-standard: 180ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
 
   --content-max-width: 760px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --surface-page: #21201C;
-    --surface-panel: #29281F ;
-    --surface-card: #2C2B25;
-    --ink: #F2F0E9;
-    --ink-muted: #B8B6AC;
-    --ink-faint: #8A887E;
-    --accent: #E08A6A;
-    --accent-hover: #EDA486;
-    --accent-tint: #3A2E28;
-    --border-hairline: #3A392F;
-    --border-strong: #4A4839;
-    --shadow-popover: 0 8px 24px rgba(0, 0, 0, 0.4);
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
   }
-}
-
-:root[data-theme="dark"] {
-  --surface-page: #21201C;
-  --surface-panel: #29281F;
-  --surface-card: #2C2B25;
-  --ink: #F2F0E9;
-  --ink-muted: #B8B6AC;
-  --ink-faint: #8A887E;
-  --accent: #E08A6A;
-  --accent-hover: #EDA486;
-  --accent-tint: #3A2E28;
-  --border-hairline: #3A392F;
-  --border-strong: #4A4839;
-  --shadow-popover: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-:root[data-theme="light"] {
-  --surface-page: #FAF9F5;
-  --surface-panel: #F0EEE6;
-  --surface-card: #FFFFFF;
-  --ink: #2B2A26;
-  --ink-muted: #6B6A63;
-  --ink-faint: #9C9A91;
-  --accent: #CC785C;
-  --accent-hover: #B86449;
-  --accent-tint: #F3E3DB;
-  --border-hairline: #E5E3DA;
-  --border-strong: #D3D0C4;
-  --shadow-popover: 0 8px 24px rgba(43, 42, 38, 0.12);
 }
