@@ -1,0 +1,93 @@
+:root {
+  /* Color */
+  --surface-page: #FAF9F5;
+  --surface-panel: #F0EEE6;
+  --surface-card: #FFFFFF;
+  --ink: #2B2A26;
+  --ink-muted: #6B6A63;
+  --ink-faint: #9C9A91;
+
+  --accent: #CC785C;
+  --accent-hover: #B86449;
+  --accent-tint: #F3E3DB;
+
+  --border-hairline: #E5E3DA;
+  --border-strong: #D3D0C4;
+
+  --shadow-popover: 0 8px 24px rgba(43, 42, 38, 0.12);
+
+  /* Typography */
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-standard: 180ms;
+
+  --content-max-width: 760px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-page: #21201C;
+    --surface-panel: #29281F ;
+    --surface-card: #2C2B25;
+    --ink: #F2F0E9;
+    --ink-muted: #B8B6AC;
+    --ink-faint: #8A887E;
+    --accent: #E08A6A;
+    --accent-hover: #EDA486;
+    --accent-tint: #3A2E28;
+    --border-hairline: #3A392F;
+    --border-strong: #4A4839;
+    --shadow-popover: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface-page: #21201C;
+  --surface-panel: #29281F;
+  --surface-card: #2C2B25;
+  --ink: #F2F0E9;
+  --ink-muted: #B8B6AC;
+  --ink-faint: #8A887E;
+  --accent: #E08A6A;
+  --accent-hover: #EDA486;
+  --accent-tint: #3A2E28;
+  --border-hairline: #3A392F;
+  --border-strong: #4A4839;
+  --shadow-popover: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme="light"] {
+  --surface-page: #FAF9F5;
+  --surface-panel: #F0EEE6;
+  --surface-card: #FFFFFF;
+  --ink: #2B2A26;
+  --ink-muted: #6B6A63;
+  --ink-faint: #9C9A91;
+  --accent: #CC785C;
+  --accent-hover: #B86449;
+  --accent-tint: #F3E3DB;
+  --border-hairline: #E5E3DA;
+  --border-strong: #D3D0C4;
+  --shadow-popover: 0 8px 24px rgba(43, 42, 38, 0.12);
+}

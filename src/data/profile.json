@@ -1,0 +1,102 @@
+{
+  "name": "Ram Kumar",
+  "title": "Senior Frontend Engineer",
+  "location": "Trichy, India",
+  "contact": {
+    "email": "ramkumars.trichy@gmail.com",
+    "phone": "7868996041",
+    "linkedin": "linkedin.com/in/ram-kumar",
+    "github": "github.com/RamkumarJarvis"
+  },
+  "summary": "Senior frontend engineer with extensive experience designing and scaling modern web applications in healthcare, fitness, and education. I led a frontend team delivering a calendar-based booking system, EMR, and CRM for the SendScript healthcare platform, and built an interactive 3D-animated onboarding UI for the Culnity fitness platform. I'm looking to apply deep React/Next.js expertise and leadership skills to drive high-impact frontend solutions and accelerate product growth.",
+  "experience": [
+    {
+      "company": "DaivTech Pvt Ltd",
+      "role": "Senior Frontend Engineer",
+      "start": "2025-02",
+      "end": "present",
+      "highlights": [
+        "Lead a frontend team, coordinating sprint planning and delivery with Agile ceremonies and Git — 95% on-time sprint completion rate",
+        "Established code-quality standards and PR workflows with Prettier and ESLint; designed a scalable React architecture using code splitting, cutting bundle size 20%",
+        "Mentored developers on performance optimization with React Query caching and animation best practices, reducing page-render time 30%",
+        "Drove architectural decisions for modular, high-performance frontend systems with code splitting and lazy loading, raising the Lighthouse score from 78 to 92",
+        "Collaborated with product, backend, and design teams to ship modular platforms in React.js and Next.js on a two-week release cadence"
+      ]
+    },
+    {
+      "company": "Iamneo.ai Private Limited",
+      "role": "Software Engineer",
+      "start": "2022-05",
+      "end": "2025-01",
+      "highlights": [
+        "Migrated Angular 12 applications to Angular 13, refactoring with TypeScript to reduce technical debt",
+        "Built dynamic, schema-validated forms with Angular Forms, including complex conditional logic",
+        "Built responsive UI components with Tailwind CSS integrated into a PrimeNg-based design system",
+        "Reduced API response time from 20s to 3s — an 85% improvement",
+        "Shipped features on the Neo Exam and Neo Hire platforms using Node.js, Express, and Angular"
+      ]
+    },
+    {
+      "company": "Ebiz Global Corp",
+      "role": "ASP.NET Developer",
+      "start": "2021-10",
+      "end": "2022-04",
+      "highlights": [
+        "Built 20+ web applications with ASP.NET C# and jQuery using component architecture and modern CSS",
+        "Managed SQL Server databases, writing optimized queries and indexing strategies that cut query response time"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "sendscript",
+      "name": "SendScript",
+      "category": "Healthcare platform",
+      "description": "A calendar-based booking system with a Google Calendar-like UI, built with React.js, code splitting, and animation. I added real-time consultation scheduling with React Query so clinicians see live availability, and integrated OnlyOffice for document automation — cutting contract-generation and processing time. Reusable components and a React Context-based state architecture kept the codebase easy to extend as we added features.",
+      "tech": ["React.js", "React Query", "React Context", "REST APIs", "Code Splitting", "OnlyOffice"],
+      "image": "/images/sendscript.png"
+    },
+    {
+      "slug": "culnity",
+      "name": "Culnity",
+      "category": "Fitness platform",
+      "description": "An interactive, 3D-animated onboarding experience built with Theatre.js that made first-time use more engaging and increased time-on-page. I also built the gym discovery and booking flow with React Query and modular components, so users can filter gyms and complete a booking in a few clicks.",
+      "tech": ["React.js", "Theatre.js", "React Query"],
+      "image": "/images/culnity.png"
+    }
+  ],
+  "skills": {
+    "frontend": ["React.js", "Next.js", "Angular", "TypeScript", "JavaScript", "HTML5", "CSS3", "SCSS", "Tailwind CSS"],
+    "architecture": ["Component Architecture", "Code Splitting", "Lazy Loading", "Performance Optimization"],
+    "state": ["Zustand", "React Query", "REST APIs"],
+    "uiux": ["Responsive Design", "Mobile-First Design", "Design Systems", "Animations"],
+    "libraries": ["Ant Design", "React Hook Form", "Zod", "Highcharts", "Theatre.js", "PrimeNg"],
+    "realtime": ["WebSockets", "Socket.IO"],
+    "integrations": ["AWS S3", "Stripe", "Jitsi", "OnlyOffice"],
+    "backend": ["Node.js", "MySQL", "NestJS"],
+    "tools": ["Git", "Docker", "ESLint", "Prettier", "Husky"]
+  },
+  "aiAndLearning": [
+    "Implementing generative AI in frontend applications",
+    "Exploring AI-powered UI and workflow automation",
+    "Hands-on with Claude, Ollama, Hugging Face, OpenClaw"
+  ],
+  "achievements": [
+    "Rookie Neo Award for UI excellence",
+    "Improved API performance by 85% (20s to 3s)",
+    "Delivered features with zero deadline slippage",
+    "Successfully led frontend team workflows"
+  ],
+  "education": {
+    "degree": "Bachelor of Computer Science",
+    "school": "Periyar E.V.R College, Trichy",
+    "years": "2018-2021",
+    "gpa": "7.5"
+  },
+  "vision": [
+    "Growing as a frontend architect / engineering leader",
+    "Mentoring developers and improving team productivity",
+    "Focused on scalable systems and clean architecture",
+    "Goal: build AI-powered products and contribute to open source"
+  ]
+}
