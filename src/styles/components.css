@@ -114,6 +114,7 @@
   font-size: 16px;
   color: var(--ink-muted);
   max-width: 480px;
+  margin-top: 0;
 }
 
 /* Ask input */
@@ -239,6 +240,23 @@
 
 .chat__bubble--assistant p {
   margin: 0 0 var(--space-3);
+}
+
+.chat__bubble--assistant p:last-child {
+  margin-bottom: 0;
+}
+
+.chat__list {
+  margin: 0 0 var(--space-3);
+  padding-left: 1.25em;
+}
+
+.chat__list li {
+  margin-bottom: var(--space-2);
+}
+
+.chat__list li:last-child {
+  margin-bottom: 0;
 }
 
 .chat__cards {

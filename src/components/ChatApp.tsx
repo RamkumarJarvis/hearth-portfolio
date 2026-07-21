@@ -154,9 +154,31 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
     return next;
   }
 
+  function renderInline(text: string) {
+    return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+      part.startsWith("**") && part.endsWith("**") ? <strong key={i}>{part.slice(2, -2)}</strong> : part
+    );
+  }
+
   function renderAssistantText(content: string) {
     const clean = content.replace(/\[project:[a-z0-9-]+\]/g, "").trim();
-    return clean.split("\n\n").map((para, i) => <p key={i}>{para}</p>);
+
+    return clean.split(/\n{2,}/).map((block, bi) => {
+      const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+      const isList = lines.length > 0 && lines.every((l) => /^[-*]\s+/.test(l));
+
+      if (isList) {
+        return (
+          <ul class="chat__list" key={bi}>
+            {lines.map((line, li) => (
+              <li key={li}>{renderInline(line.replace(/^[-*]\s+/, ""))}</li>
+            ))}
+          </ul>
+        );
+      }
+
+      return <p key={bi}>{renderInline(block)}</p>;
+    });
   }
 
   return (
@@ -172,12 +194,12 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
           {view === "hero" ? (
             <div class="hero">
               <div class="hero__content">
-                <div class="hero__avatar hero__avatar--in">{initials}</div>
                 <div>
                   <div class="hero__greeting">Hey, I'm {profile.name}</div>
                   <h1 class="hero__title">{profile.title}</h1>
+                <p class="hero__subtitle">{profile.tagline}</p>
                 </div>
-                <p class="hero__subtitle">{profile.summary}</p>
+                <div class="hero__avatar hero__avatar--in">{initials}</div>
               </div>
 
               <div class="hero__actions">
