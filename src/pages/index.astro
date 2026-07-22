@@ -1,5 +1,6 @@
 ---
 import ChatApp from "../components/ChatApp";
+import InfoDialog from "../components/InfoDialog";
 import profile from "../data/profile.json";
 import "../styles/global.css";
 
@@ -16,5 +17,6 @@ const initialQuery = Astro.url.searchParams.get("query") ?? undefined;
   </head>
   <body>
     <ChatApp client:load initialQuery={initialQuery} />
+    <InfoDialog client:only="react" />
   </body>
 </html>
