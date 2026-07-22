@@ -11,6 +11,7 @@ export const PATHS: Record<string, string> = {
   user: "M12 12A4 4 0 1 0 12 4A4 4 0 0 0 12 12Z M4 20A8 8 0 0 1 20 20",
   chevronDown: "M6 9L12 15L18 9",
   x: "M6 6L18 18 M18 6L6 18",
+  file: "M6 3H14L19 8V19A2 2 0 0 1 17 21H6A2 2 0 0 1 4 19V5A2 2 0 0 1 6 3Z M14 3V8H19 M8 12H15 M8 16H15",
 };
 
 interface IconProps {

@@ -4,6 +4,7 @@ import ProjectCard from "./ProjectCard";
 import SkillTags from "./SkillTags";
 import ClickSpark from "./effects/ClickSpark";
 import FaceAvatar, { type FaceReaction } from "./FaceAvatar";
+import { RESUME_URL, AI_FALLBACK_MESSAGE } from "../lib/constants";
 import profile from "../data/profile.json";
 
 // Canvas effects can't read CSS custom properties, so the accent is
@@ -17,6 +18,7 @@ interface Turn {
   streaming?: boolean;
   showSkills?: boolean;
   stopped?: boolean;
+  resumeFallback?: boolean;
 }
 
 const CHIPS: { label: string; icon: string; query: string; reaction: string }[] = [
@@ -106,8 +108,10 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
       });
 
       if (!res.ok || !res.body) {
-        const err = await res.json().catch(() => ({ error: "Something went wrong." }));
-        setTurns((prev) => updateLastAssistant(prev, err.error ?? "Something went wrong.", []));
+        const err = await res.json().catch(() => ({ error: AI_FALLBACK_MESSAGE }));
+        setTurns((prev) =>
+          updateLastAssistant(prev, err.error ?? AI_FALLBACK_MESSAGE, [], false, false, true)
+        );
         return;
       }
 
@@ -133,6 +137,9 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
           if (eventType === "token") {
             text += data.text;
             setTurns((prev) => updateLastAssistant(prev, text, undefined, true));
+          } else if (eventType === "fallback") {
+            text = data.text;
+            setTurns((prev) => updateLastAssistant(prev, text, [], false, false, true));
           } else if (eventType === "done") {
             setTurns((prev) => updateLastAssistant(prev, text, data.cards, false));
           }
@@ -142,7 +149,7 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
       if ((err as Error).name === "AbortError") {
         setTurns((prev) => updateLastAssistant(prev, text, [], false, true));
       } else {
-        setTurns((prev) => updateLastAssistant(prev, "I couldn't reach the model just now — try again in a moment.", []));
+        setTurns((prev) => updateLastAssistant(prev, AI_FALLBACK_MESSAGE, [], false, false, true));
       }
     } finally {
       setBusy(false);
@@ -171,7 +178,8 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
     content: string,
     cards: typeof profile.projects | undefined,
     streaming?: boolean,
-    stopped?: boolean
+    stopped?: boolean,
+    resumeFallback?: boolean
   ): Turn[] {
     const next = [...prev];
     const idx = next.length - 1;
@@ -182,6 +190,7 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
         cards: cards ?? next[idx].cards,
         streaming: !!streaming,
         stopped: !!stopped,
+        resumeFallback: !!resumeFallback,
       };
     }
     return next;
@@ -260,6 +269,10 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
                       {chip.label}
                     </button>
                   ))}
+                  <a class="chip" href={RESUME_URL} target="_blank" rel="noopener noreferrer">
+                    <Icon name="file" size={14} />
+                    Resume
+                  </a>
                 </div>
               </div>
             </div>
@@ -289,6 +302,17 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
                       ) : null}
                     </div>
                     {turn.stopped && turn.content && <span class="chat__stopped">Stopped</span>}
+                    {turn.resumeFallback && !turn.streaming && (
+                      <a
+                        class="chip chip--resume"
+                        href={RESUME_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon name="file" size={14} />
+                        View My Resume
+                      </a>
+                    )}
                     {turn.showSkills && !turn.streaming && <SkillTags skills={profile.skills} />}
                     {turn.cards && turn.cards.length > 0 && (
                       <div class="chat__cards">
@@ -338,6 +362,10 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
                       {chip.label}
                     </button>
                   ))}
+                  <a class="chip" href={RESUME_URL} target="_blank" rel="noopener noreferrer">
+                    <Icon name="file" size={14} />
+                    Resume
+                  </a>
                 </div>
               </div>
             </div>
