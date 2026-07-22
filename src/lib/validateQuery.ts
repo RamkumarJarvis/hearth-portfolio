@@ -76,5 +76,21 @@ export function validateQuery(raw: string): ValidationResult {
     }
   }
 
+  // Same mashing, spaced into short fragments ("ddd asd fa sdf asdf",
+  // "asdf asdf") so no single token above ever hits the 7-letter gate.
+  // Checked across the whole query instead, with a lower-but-still-safe
+  // letter-count floor — real sentences almost always pull in enough
+  // letters from outside one row (e/t/o/n/i/r/c/... are split across all
+  // three rows) that this rarely false-positives; it only misfires on
+  // sentences deliberately built from nothing but same-row words, which
+  // don't occur in normal phrasing.
+  if (letters.length >= 8) {
+    const rows = new Set([...letters].map(keyboardRowOf));
+    rows.delete(-1);
+    if (rows.size === 1) {
+      return { ok: false, message: QUERY_INVALID_MESSAGE };
+    }
+  }
+
   return { ok: true };
 }
