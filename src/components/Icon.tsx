@@ -1,4 +1,7 @@
-const PATHS: Record<string, string> = {
+// Exported (not just used internally) so framework-agnostic consumers —
+// e.g. the React-side shadcn components in ui/, which can't render this
+// Preact-compiled component directly — can draw the same icons themselves.
+export const PATHS: Record<string, string> = {
   send: "M4 12L20 4L14 20L11 13L4 12Z",
   info: "M12 11V16 M12 8H12.01 M12 21A9 9 0 1 0 12 3A9 9 0 0 0 12 21Z",
   mail: "M4 6H20A1 1 0 0 1 21 7V17A1 1 0 0 1 20 18H4A1 1 0 0 1 3 17V7A1 1 0 0 1 4 6Z M3.5 7L12 13L20.5 7",

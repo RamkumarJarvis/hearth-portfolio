@@ -1,7 +1,7 @@
 {
   "name": "Ram Kumar",
   "title": "Senior Frontend Engineer",
-  "location": "Trichy, India",
+  "location": "Coimbatore, India",
   "contact": {
     "email": "ramkumars.trichy@gmail.com",
     "phone": "7868996041",
@@ -89,9 +89,9 @@
   "skills": {
     "frontend": ["React.js", "Next.js", "Angular", "TypeScript", "JavaScript", "HTML5", "CSS3", "SCSS", "Tailwind CSS"],
     "architecture": ["Component Architecture", "Code Splitting", "Lazy Loading", "Performance Optimization"],
-    "state": ["Zustand", "React Query", "REST APIs"],
+    "state": ["Zustand", "React Query", "Tanstack Query", "REST APIs"],
     "uiux": ["Responsive Design", "Mobile-First Design", "Design Systems", "Animations"],
-    "libraries": ["Ant Design", "React Hook Form", "Zod", "Highcharts", "Theatre.js", "PrimeNg"],
+    "libraries": ["Onfido", "Tanstack", "Ant Design", "React Hook Form", "Zod", "Highcharts", "TipTap", "Theatre.js", "PrimeNg"],
     "realtime": ["WebSockets", "Socket.IO"],
     "integrations": ["AWS S3", "Stripe", "Jitsi", "OnlyOffice"],
     "backend": ["Node.js", "MySQL", "NestJS"],

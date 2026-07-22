@@ -1,0 +1,30 @@
+/* Utilities only — no preflight/reset, so this can't clash with
+   global.css / tokens.css / components.css. Used exclusively by the
+   shadcn-derived components under src/components/ui/. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-animate-css";
+
+/* Map shadcn's expected token names onto our existing design tokens
+   (tokens.css) so generated components inherit the site's palette
+   instead of shadcn's defaults. */
+@theme inline {
+  --color-background: var(--surface-page);
+  --color-foreground: var(--ink);
+  --color-popover: var(--surface-card);
+  --color-popover-foreground: var(--ink);
+  --color-card: var(--surface-card);
+  --color-card-foreground: var(--ink);
+  --color-border: var(--border-hairline);
+  --color-input: var(--border-hairline);
+  --color-ring: var(--accent);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--surface-page);
+  --color-accent: var(--accent-tint);
+  --color-accent-foreground: var(--accent);
+  --color-muted: var(--surface-panel);
+  --color-muted-foreground: var(--ink-muted);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --radius: var(--radius-lg);
+}

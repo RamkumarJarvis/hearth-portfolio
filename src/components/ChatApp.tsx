@@ -154,6 +154,18 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
     abortRef.current?.abort();
   }
 
+  function resetHome() {
+    abortRef.current?.abort();
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    setView("hero");
+    setTurns([]);
+    setInput("");
+    setBusy(false);
+    setReaction(null);
+  }
+
   function updateLastAssistant(
     prev: Turn[],
     content: string,
@@ -206,10 +218,9 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
     <ClickSpark sparkColor={ACCENT_HEX} sparkSize={8} sparkRadius={18} sparkCount={7} duration={450}>
         <div class="page">
           <div class="page-header">
-            <div class="brand-mark">{initials[0]}</div>
-            <div class="info-icon" title="This is an AI assistant answering from Ram's resume data.">
-              <Icon name="info" size={18} />
-            </div>
+            <button class="brand-mark" onClick={resetHome} aria-label="Reset chat" title="Reset chat">
+              {initials[0]}
+            </button>
           </div>
 
           {view === "hero" ? (

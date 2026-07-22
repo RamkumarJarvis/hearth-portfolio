@@ -18,6 +18,8 @@
 .brand-mark {
   width: 32px;
   height: 32px;
+  border: none;
+  padding: 0;
   border-radius: var(--radius-sm);
   background: var(--ink);
   color: var(--surface-page);
@@ -26,6 +28,13 @@
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
+  font-size: inherit;
+  cursor: pointer;
+  transition: opacity var(--dur-micro) var(--ease-out);
+}
+
+.brand-mark:hover {
+  opacity: 0.85;
 }
 
 .info-icon {
@@ -35,13 +44,45 @@
   justify-content: center;
   width: 32px;
   height: 32px;
+  border: none;
+  padding: 0;
+  background: transparent;
   border-radius: var(--radius-pill);
+  cursor: pointer;
   transition: background var(--dur-short) var(--ease-out);
 }
 
 .info-icon:hover {
   background: var(--accent-tint);
   color: var(--accent);
+}
+
+/* InfoDialog is a separate React island (see astro.config.mjs REACT_SCOPE),
+   not part of ChatApp's Preact tree, so it can't sit inside .page-header
+   directly. This overlay mirrors .page's max-width/padding so the trigger
+   lines up with where .page-header would place it. */
+.info-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5) 0;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.info-dialog-overlay .info-icon {
+  pointer-events: auto;
+}
+
+@media (max-width: 600px) {
+  .info-dialog-overlay {
+    padding: var(--space-5) var(--space-4) 0;
+  }
 }
 
 /* Hero — content centers in the remaining space; actions stay pinned to
