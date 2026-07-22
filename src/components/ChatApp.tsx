@@ -3,6 +3,7 @@ import Icon from "./Icon";
 import ProjectCard from "./ProjectCard";
 import SkillTags from "./SkillTags";
 import ClickSpark from "./effects/ClickSpark";
+import FaceAvatar, { type FaceReaction } from "./FaceAvatar";
 import profile from "../data/profile.json";
 
 // Canvas effects can't read CSS custom properties, so the accent is
@@ -18,13 +19,25 @@ interface Turn {
   stopped?: boolean;
 }
 
-const CHIPS: { label: string; icon: string; query: string }[] = [
-  { label: "Me", icon: "user", query: "Tell me about yourself." },
-  { label: "Projects", icon: "briefcase", query: "What projects have you worked on?" },
-  { label: "Skills", icon: "layers", query: "What are your technical skills?" },
-  { label: "Fun", icon: "sparkles", query: "Tell me something fun about your journey and goals." },
-  { label: "Contact", icon: "mail", query: "How can I get in touch with you?" },
+const CHIPS: { label: string; icon: string; query: string; reaction: string }[] = [
+  { label: "Me", icon: "user", query: "Tell me about yourself.", reaction: "me" },
+  { label: "Projects", icon: "briefcase", query: "What projects have you worked on?", reaction: "projects" },
+  { label: "Skills", icon: "layers", query: "What are your technical skills?", reaction: "skills" },
+  { label: "Fun", icon: "sparkles", query: "Tell me something fun about your journey and goals.", reaction: "fun" },
+  { label: "Contact", icon: "mail", query: "How can I get in touch with you?", reaction: "contact" },
 ];
+
+// Best-effort topic guess for freeform input, so the face still reacts
+// when a query isn't sent via one of the chips above.
+function inferReaction(query: string): string {
+  const q = query.toLowerCase();
+  if (/project/.test(q)) return "projects";
+  if (/skill/.test(q)) return "skills";
+  if (/fun|journey|goal/.test(q)) return "fun";
+  if (/contact|email|reach|phone/.test(q)) return "contact";
+  if (/yourself|about you|who are you/.test(q)) return "me";
+  return "greeting";
+}
 
 const initials = profile.name
   .split(" ")
@@ -39,6 +52,13 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
   const firedInitial = useRef(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const [reaction, setReaction] = useState<FaceReaction | null>(null);
+  const reactionNonce = useRef(0);
+
+  function triggerReaction(key: string) {
+    reactionNonce.current += 1;
+    setReaction({ key, nonce: reactionNonce.current });
+  }
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -52,8 +72,9 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialQuery]);
 
-  async function send(query: string) {
+  async function send(query: string, reactionKey?: string) {
     if (!query.trim() || busy) return;
+    triggerReaction(reactionKey ?? inferReaction(query));
     setView("chat");
     setBusy(true);
     setInput("");
@@ -199,7 +220,7 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
                   <h1 class="hero__title">{profile.title}</h1>
                 <p class="hero__subtitle">{profile.tagline}</p>
                 </div>
-                <div class="hero__avatar hero__avatar--in">{initials}</div>
+                <FaceAvatar reaction={reaction} size={180} className="hero__avatar--in" />
               </div>
 
               <div class="hero__actions">
@@ -223,7 +244,7 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
 
                 <div class="chip-row">
                   {CHIPS.map((chip) => (
-                    <button class="chip" key={chip.label} onClick={() => send(chip.query)}>
+                    <button class="chip" key={chip.label} onClick={() => send(chip.query, chip.reaction)}>
                       <Icon name={chip.icon as any} size={14} />
                       {chip.label}
                     </button>
@@ -233,6 +254,9 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
             </div>
           ) : (
             <div class="chat">
+              <div class="chat__avatar">
+                <FaceAvatar reaction={reaction} size={56} radius={12} />
+              </div>
               {turns.map((turn, i) =>
                 turn.role === "user" ? (
                   <div class="chat__turn chat__turn--user" key={i}>
@@ -293,7 +317,12 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
                 </form>
                 <div class="chip-row" style={{ marginTop: "12px" }}>
                   {CHIPS.map((chip) => (
-                    <button class="chip" key={chip.label} onClick={() => send(chip.query)} disabled={busy}>
+                    <button
+                      class="chip"
+                      key={chip.label}
+                      onClick={() => send(chip.query, chip.reaction)}
+                      disabled={busy}
+                    >
                       <Icon name={chip.icon as any} size={14} />
                       {chip.label}
                     </button>
