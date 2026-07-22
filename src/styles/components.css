@@ -258,6 +258,7 @@
   background: var(--surface-card);
   color: var(--ink);
   font-size: 14px;
+  text-decoration: none;
   cursor: pointer;
   transition: background var(--dur-micro) var(--ease-out),
               border-color var(--dur-micro) var(--ease-out);
@@ -371,6 +372,12 @@
   font-size: 12px;
   color: var(--ink-faint);
   margin-top: var(--space-2);
+}
+
+.chip--resume {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: var(--space-3);
 }
 
 /* Skill tags */
