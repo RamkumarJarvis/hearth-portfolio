@@ -1,0 +1,123 @@
+{
+  "name": "Ram Kumar",
+  "title": "Senior Frontend Engineer",
+  "location": "Trichy, India",
+  "contact": {
+    "email": "ramkumars.trichy@gmail.com",
+    "phone": "7868996041",
+    "linkedin": "linkedin.com/in/ram-kumar",
+    "github": "github.com/RamkumarJarvis"
+  },
+  "tagline": "Senior frontend engineer building booking systems, dashboards, and animated product UIs in React and Next.js.",
+  "summary": "Senior frontend engineer with extensive experience designing and scaling modern web applications in healthcare, fitness, and education. I led a frontend team delivering a calendar-based booking system, EMR, and CRM for the SendScript healthcare platform, and built an interactive 3D-animated onboarding UI for the Culnity fitness platform. I'm looking to apply deep React/Next.js expertise and leadership skills to drive high-impact frontend solutions and accelerate product growth.",
+  "experience": [
+    {
+      "company": "DaivTech Pvt Ltd",
+      "role": "Senior Frontend Engineer",
+      "start": "2025-02",
+      "end": "present",
+      "highlights": [
+        "Lead a frontend team, coordinating sprint planning and delivery with Agile ceremonies and Git — 95% on-time sprint completion rate",
+        "Established code-quality standards and PR workflows with Prettier and ESLint; designed a scalable React architecture using code splitting, cutting bundle size 20%",
+        "Mentored developers on performance optimization with React Query caching and animation best practices, reducing page-render time 30%",
+        "Drove architectural decisions for modular, high-performance frontend systems with code splitting and lazy loading, raising the Lighthouse score from 78 to 92",
+        "Collaborated with product, backend, and design teams to ship modular platforms in React.js and Next.js on a two-week release cadence"
+      ]
+    },
+    {
+      "company": "Iamneo.ai Private Limited",
+      "role": "Software Engineer",
+      "start": "2022-05",
+      "end": "2025-01",
+      "highlights": [
+        "Migrated Angular 12 applications to Angular 13, refactoring with TypeScript to reduce technical debt",
+        "Built dynamic, schema-validated forms with Angular Forms, including complex conditional logic",
+        "Built responsive UI components with Tailwind CSS integrated into a PrimeNg-based design system",
+        "Reduced API response time from 20s to 3s — an 85% improvement",
+        "Shipped features on the Neo Exam and Neo Hire platforms using Node.js, Express, and Angular"
+      ]
+    },
+    {
+      "company": "Ebiz Global Corp",
+      "role": "ASP.NET Developer",
+      "start": "2021-10",
+      "end": "2022-04",
+      "highlights": [
+        "Built 20+ web applications with ASP.NET C# and jQuery using component architecture and modern CSS",
+        "Managed SQL Server databases, writing optimized queries and indexing strategies that cut query response time"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "sendscript",
+      "name": "SendScript",
+      "category": "Healthcare platform",
+      "description": "A calendar-based booking system with a Google Calendar-like UI, built with React.js, code splitting, and animation. I added real-time consultation scheduling with React Query so clinicians see live availability, and integrated OnlyOffice for document automation — cutting contract-generation and processing time. Reusable components and a React Context-based state architecture kept the codebase easy to extend as we added features.",
+      "detail": "Sendscript is a modern SaaS-based healthcare platform built to simplify and centralize the entire healthcare journey for both providers and patients. It brings together digital prescription creation, diagnostic scan/test bookings, video consultations, healthcare e-commerce, and bookkeeping in a single interface. What sets it apart is a modular architecture — each feature can run independently, be monetized separately, or be integrated into other platforms via APIs and embeddable SDKs — so it works as a standalone product or as a connected layer inside a larger healthcare ecosystem.\n\nMission: build a digital healthcare ecosystem that removes the need for multiple disconnected tools, with plug-and-play modularity for maximum flexibility and seamless integration with other healthcare platforms.\n\nVision: evolve Sendscript into a full EMR system for managing medical workflows, plus a CRM for business operations — finance, patient engagement, service analytics — so everything from clinical to administrative operations runs in one intelligent, cloud-based environment.\n\nRoadmap: work standalone or as part of the full platform; grow into a next-generation, AI-driven EMR/CRM; integrate into third-party systems via APIs, SDKs, or white-labeling; support monetization through individual SaaS modules or a single unified platform.\n\nAt full maturity, the goal is to lead the healthcare EMR/CRM space for B2B — clinics, hospitals, health networks — and to be the B2C app patients rely on for their whole healthcare journey: prescriptions, tests, video consults, and medication, all in one place.\n\nMy role: I led the frontend build of the booking system's Google Calendar-like UI in React, added real-time consultation scheduling with React Query, integrated OnlyOffice for document automation, and built the reusable component library and React Context-based state architecture that let the team extend the product quickly.",
+      "tech": ["React.js", "React Query", "React Context", "REST APIs", "Code Splitting", "OnlyOffice"],
+      "image": "/images/sendscript.png"
+    },
+    {
+      "slug": "culnity",
+      "name": "Culnity",
+      "category": "Fitness platform",
+      "description": "An interactive, 3D-animated onboarding experience built with Theatre.js that made first-time use more engaging and increased time-on-page. I also built the gym discovery and booking flow with React Query and modular components, so users can filter gyms and complete a booking in a few clicks.",
+      "detail": "Culnity is a fitness platform where I focused on making the first-time experience feel premium rather than transactional. I built an interactive, 3D-animated onboarding flow with Theatre.js — sequenced animations that guide new users through setup and make the app feel alive from the first screen — which increased time-on-page. I also built the gym discovery and booking flow: modular, filterable components backed by React Query so users can browse gyms and complete a booking in a few clicks. Animation-driven UX patterns across the product helped drive repeat visits and higher interaction rates.",
+      "tech": ["React.js", "Theatre.js", "React Query"],
+      "image": "/images/culnity.png"
+    },
+    {
+      "slug": "neohire",
+      "name": "NeoHire",
+      "category": "Recruitment platform",
+      "description": "Contributed as one of the frontend developers on NeoHire, Iamneo's AI-powered recruitment automation platform — building UI for skill assessments, AI proctoring, and video interviews with Angular, Node.js, and Express, used by 65+ corporate clients including Fortune 500 companies.",
+      "detail": "NeoHire is Iamneo's AI-powered recruitment automation platform, covering the full hiring lifecycle from application to onboarding: custom multi-stage pipelines with eligibility filtering, skill assessments with auto-scoring, AI-powered proctoring (face detection, system locks, real-time monitoring), live and asynchronous video interviews with in-browser coding environments, plagiarism and code-quality analysis, and virtual onboarding with offer and document management. It's used by hiring managers, technical teams, and HR departments at 65+ corporate clients, including Fortune 500 companies, and has assessed over 10 million test-takers.\n\nMy role: I was one of the frontend developers building NeoHire's UI, implementing features and flows in Angular, Node.js, and Express.",
+      "tech": ["Angular", "Node.js", "Express", "TypeScript"],
+      "image": "/images/neohire.png"
+    },
+    {
+      "slug": "neoexam",
+      "name": "Neo Exam",
+      "category": "Assessment platform",
+      "description": "Migrated Neo Exam, Iamneo's AI-proctored exam platform, from Angular 12 to Angular 13, and rebuilt its UI flows — moving from plain CSS to Tailwind CSS with Angular animations and a PrimeNg-based design system — to raise the UI/UX bar for a platform used by 120+ universities.",
+      "detail": "Neo Exam is Iamneo's cloud-based, AI-proctored digital examination platform, built to replace paper-based testing with secure, scalable online assessments — AI monitoring (face recognition, object detection, eyeball tracking), multi-layer question security and browser lockdown, support for 50+ programming languages plus MCQ, subjective, and handwritten answers, bulk question uploads, randomized test modules, and real-time analytics. It runs at scale — 200,000+ concurrent users, 5M+ exam hours a year — and is used by 120+ universities.\n\nMy role: I migrated Neo Exam's existing Angular 12 codebase to Angular 13. The product originally used plain CSS, so I rebuilt the new UI flows on Tailwind CSS with Angular animations and a PrimeNg-based design system, which lifted the visual polish and interaction quality across the platform.",
+      "tech": ["Angular", "TypeScript", "Tailwind CSS", "PrimeNg", "Angular Animations"],
+      "image": "/images/neoexam.png"
+    }
+  ],
+  "skills": {
+    "frontend": ["React.js", "Next.js", "Angular", "TypeScript", "JavaScript", "HTML5", "CSS3", "SCSS", "Tailwind CSS"],
+    "architecture": ["Component Architecture", "Code Splitting", "Lazy Loading", "Performance Optimization"],
+    "state": ["Zustand", "React Query", "REST APIs"],
+    "uiux": ["Responsive Design", "Mobile-First Design", "Design Systems", "Animations"],
+    "libraries": ["Ant Design", "React Hook Form", "Zod", "Highcharts", "Theatre.js", "PrimeNg"],
+    "realtime": ["WebSockets", "Socket.IO"],
+    "integrations": ["AWS S3", "Stripe", "Jitsi", "OnlyOffice"],
+    "backend": ["Node.js", "MySQL", "NestJS"],
+    "tools": ["Git", "Docker", "ESLint", "Prettier", "Husky"]
+  },
+  "aiAndLearning": [
+    "Implementing generative AI in frontend applications",
+    "Exploring AI-powered UI and workflow automation",
+    "Hands-on with Claude, Ollama, Hugging Face, OpenClaw"
+  ],
+  "achievements": [
+    "Rookie Neo Award for UI excellence",
+    "Improved API performance by 85% (20s to 3s)",
+    "Delivered features with zero deadline slippage",
+    "Successfully led frontend team workflows"
+  ],
+  "education": {
+    "degree": "Bachelor of Computer Science",
+    "school": "Periyar E.V.R College, Trichy",
+    "years": "2018-2021",
+    "gpa": "7.5"
+  },
+  "vision": [
+    "Growing as a frontend architect / engineering leader",
+    "Mentoring developers and improving team productivity",
+    "Focused on scalable systems and clean architecture",
+    "Goal: build AI-powered products and contribute to open source"
+  ]
+}

@@ -1,0 +1,20 @@
+---
+import ChatApp from "../components/ChatApp";
+import profile from "../data/profile.json";
+import "../styles/global.css";
+
+const initialQuery = Astro.url.searchParams.get("query") ?? undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{profile.name} — {profile.title}</title>
+    <meta name="description" content={profile.summary} />
+  </head>
+  <body>
+    <ChatApp client:load initialQuery={initialQuery} />
+  </body>
+</html>

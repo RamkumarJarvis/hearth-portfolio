@@ -1,0 +1,421 @@
+/* Layout */
+.page {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5) var(--space-8);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--surface-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.info-icon {
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  transition: background var(--dur-short) var(--ease-out);
+}
+
+.info-icon:hover {
+  background: var(--accent-tint);
+  color: var(--accent);
+}
+
+/* Hero — content centers in the remaining space; actions stay pinned to
+   the bottom of the viewport rather than drifting with the content above. */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-7) 0 var(--space-6);
+}
+
+.hero__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+}
+
+.hero__actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.hero__avatar--in {
+  animation: avatar-in var(--dur-long) var(--ease-out) both;
+}
+
+@keyframes avatar-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Face avatar — cursor-reactive headshot, crossfades between directional
+   PNG layers. See src/components/FaceAvatar.tsx. */
+.face-avatar {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--surface-panel);
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.face-avatar__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--accent);
+  background: var(--accent-tint);
+}
+
+.face-avatar__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.chat__avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+
+.hero__greeting {
+  font-size: 18px;
+  color: var(--ink-muted);
+}
+
+.hero__title {
+  font-size: 40px;
+}
+
+.hero__subtitle {
+  font-size: 16px;
+  color: var(--ink-muted);
+  max-width: 480px;
+  margin-top: 0;
+}
+
+/* Ask input */
+.ask-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-5);
+  transition: border-color var(--dur-short) var(--ease-out);
+}
+
+.ask-input:focus-within {
+  border-color: var(--accent);
+}
+
+.ask-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+.ask-input input::placeholder {
+  color: var(--ink-faint);
+}
+
+.ask-input__send {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: var(--surface-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--dur-micro) var(--ease-out);
+}
+
+.ask-input__send:hover {
+  background: var(--accent-hover);
+}
+
+.ask-input__send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Quick chips */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-hairline);
+  background: var(--surface-card);
+  color: var(--ink);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--dur-micro) var(--ease-out),
+              border-color var(--dur-micro) var(--ease-out);
+}
+
+.chip:hover {
+  background: var(--accent-tint);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Chat view */
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-bottom: var(--space-6);
+}
+
+.chat__turn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.chat__turn--user {
+  align-items: flex-end;
+}
+
+.chat__turn--assistant {
+  align-items: flex-start;
+}
+
+.chat__bubble--user {
+  background: var(--surface-panel);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  max-width: 80%;
+  font-size: 15px;
+}
+
+.chat__bubble--assistant {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 100%;
+}
+
+.chat__bubble--assistant p {
+  margin: 0 0 var(--space-3);
+}
+
+.chat__bubble--assistant p:last-child {
+  margin-bottom: 0;
+}
+
+.chat__list {
+  margin: 0 0 var(--space-3);
+  padding-left: 1.25em;
+}
+
+.chat__list li {
+  margin-bottom: var(--space-2);
+}
+
+.chat__list li:last-child {
+  margin-bottom: 0;
+}
+
+.chat__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.chat__composer {
+  position: sticky;
+  bottom: var(--space-4);
+  background: var(--surface-page);
+  padding-top: var(--space-3);
+}
+
+.typing-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: var(--space-2) 0;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  animation: typing-pulse 1s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typing-pulse {
+  0%, 80%, 100% { opacity: 0.3; }
+  40% { opacity: 1; }
+}
+
+.chat__stopped {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: var(--space-2);
+}
+
+/* Skill tags */
+.skill-group {
+  margin-bottom: var(--space-4);
+}
+
+.skill-group__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.skill-group__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Project card */
+.project-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--dur-short) var(--ease-out),
+              border-color var(--dur-short) var(--ease-out);
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.project-card__image {
+  height: 160px;
+  background-color: var(--accent-tint);
+  background-size: cover;
+  background-position: center;
+}
+
+.project-card__body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.project-card__eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: var(--space-2);
+}
+
+.project-card__title {
+  font-size: 20px;
+  margin-bottom: var(--space-2);
+}
+
+.project-card__desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin: 0 0 var(--space-4);
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--surface-panel);
+  color: var(--ink-muted);
+  border: 1px solid var(--border-hairline);
+}
+
+@media (max-width: 600px) {
+  .hero__title { font-size: 32px; }
+  .page { padding: var(--space-5) var(--space-4) var(--space-6); }
+}
