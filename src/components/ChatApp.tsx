@@ -5,6 +5,7 @@ import SkillTags from "./SkillTags";
 import ClickSpark from "./effects/ClickSpark";
 import FaceAvatar, { type FaceReaction } from "./FaceAvatar";
 import { RESUME_URL, AI_FALLBACK_MESSAGE } from "../lib/constants";
+import { validateQuery } from "../lib/validateQuery";
 import profile from "../data/profile.json";
 
 // Canvas effects can't read CSS custom properties, so the accent is
@@ -75,23 +76,37 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
   }, [initialQuery]);
 
   async function send(query: string, reactionKey?: string) {
-    if (!query.trim() || busy) return;
-    triggerReaction(reactionKey ?? inferReaction(query));
+    const trimmed = query.trim();
+    if (!trimmed || busy) return;
+
+    triggerReaction(reactionKey ?? inferReaction(trimmed));
     setView("chat");
-    setBusy(true);
     setInput("");
+
+    // Junk / oversized input is answered locally — no request, no tokens.
+    const validation = validateQuery(trimmed);
+    if (!validation.ok) {
+      setTurns((prev) => [
+        ...prev,
+        { role: "user", content: trimmed },
+        { role: "assistant", content: validation.message ?? "", streaming: false },
+      ]);
+      return;
+    }
+
+    setBusy(true);
 
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
-      url.searchParams.set("query", query);
+      url.searchParams.set("query", trimmed);
       window.history.pushState(null, "", url.toString());
     }
 
     const history = turns.map((t) => ({ role: t.role, content: t.content }));
-    const showSkills = /\bskills?\b/i.test(query);
+    const showSkills = /\bskills?\b/i.test(trimmed);
     setTurns((prev) => [
       ...prev,
-      { role: "user", content: query },
+      { role: "user", content: trimmed },
       { role: "assistant", content: "", streaming: true, showSkills },
     ]);
 
@@ -103,7 +118,7 @@ export default function ChatApp({ initialQuery }: { initialQuery?: string }) {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, history }),
+        body: JSON.stringify({ query: trimmed, history }),
         signal: controller.signal,
       });
 
