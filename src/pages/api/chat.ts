@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { streamChatCompletion, type ChatMessage } from "../../lib/openrouter";
 import { buildSystemPrompt, resolveProjectCards } from "../../lib/systemPrompt";
 import { AI_FALLBACK_MESSAGE } from "../../lib/constants";
+import { validateQuery } from "../../lib/validateQuery";
 
 export const prerender = false;
 
@@ -24,6 +25,17 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!query || typeof query !== "string") {
     return new Response(JSON.stringify({ error: "Missing query" }), { status: 400 });
+  }
+
+  // Reject junk / oversized input before spending any tokens. The client
+  // validates first (so it never sends these), but a direct API caller
+  // would otherwise slip past — this is the real token-saving guarantee.
+  const validation = validateQuery(query);
+  if (!validation.ok) {
+    return new Response(JSON.stringify({ error: validation.message }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   const messages: ChatMessage[] = [
