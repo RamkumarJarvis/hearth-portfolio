@@ -3,6 +3,7 @@ import { streamChatCompletion, type ChatMessage } from "../../lib/openrouter";
 import { buildSystemPrompt, resolveProjectCards } from "../../lib/systemPrompt";
 import { AI_FALLBACK_MESSAGE } from "../../lib/constants";
 import { validateQuery } from "../../lib/validateQuery";
+import { logPrompt } from "../../lib/supabase";
 
 export const prerender = false;
 
@@ -45,6 +46,11 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { "Content-Type": "application/json" },
     });
   }
+
+  // Log only the visitor's question (never the AI's reply) for later
+  // analysis — what people actually ask, to improve the resume/portfolio.
+  // Never blocks or fails the chat on a logging outage.
+  await logPrompt(query);
 
   const messages: ChatMessage[] = [
     { role: "system", content: buildSystemPrompt() },
