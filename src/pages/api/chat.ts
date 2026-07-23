@@ -6,7 +6,15 @@ import { validateQuery } from "../../lib/validateQuery";
 
 export const prerender = false;
 
-const MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
+// NVIDIA Nemotron 3 Ultra — largest/newest free model on OpenRouter as of
+// writing (550B total / 55B active MoE, "frontier-reasoning and
+// orchestration"), chosen for the strongest instruction-following among the
+// free tier: this app's system prompt requires strict rules (stay in
+// character, refuse off-topic requests, emit [project:slug] tags reliably).
+// Free-tier availability still fluctuates upstream — see the catch blocks
+// below, which fall back to AI_FALLBACK_MESSAGE + a resume link on any
+// failure (rate limit, outage, etc.) regardless of which model is set here.
+const MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free";
 
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.OPENROUTER_API_KEY;
